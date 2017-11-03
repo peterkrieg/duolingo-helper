@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "Duolingo Helper",
+  "description": "Allows you to use custom keyboard shortcuts for duolingo.  Increased productivity.",
+  "version": "1.0",
+
+  "browser_action": {
+    // "default_icon": "img/google-icon.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "downloads",
+    "activeTab"
+  ],
+  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
+  "content_scripts": [
+    {
+      // need way to match EVERYTHING, not just google permitted schemes
+      // when page turns out to be dead (404) chrome wont' run script.  so need way to mark as dead
+      // "matches": ["<all_urls>"],
+      "matches": ["*://*.duolingo.com/practice*"],
+      "js": [
+        "duolingo-helper.js"
+      ]
+    }
+  ]
+
+  
+
+}
